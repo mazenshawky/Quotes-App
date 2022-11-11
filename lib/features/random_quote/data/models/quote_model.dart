@@ -1,5 +1,3 @@
-import 'package:flutter/cupertino.dart';
-
 import '../../domain/entities/quote.dart';
 
 class QuoteModel extends Quote {
