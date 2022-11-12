@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:quotes_app/core/utils/app_colors.dart';
-import 'package:quotes_app/core/utils/constants.dart';
-import 'package:quotes_app/core/utils/media_query_values.dart';
 import 'package:quotes_app/features/random_quote/presentation/widgets/quote_content.dart';
 
 import '../../../../core/utils/app_strings.dart';
