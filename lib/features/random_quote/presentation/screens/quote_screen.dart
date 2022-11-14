@@ -19,11 +19,11 @@ class _QuoteScreenState extends State<QuoteScreen> {
   _getRandomQuote() =>
       BlocProvider.of<RandomQuoteCubit>(context).getRandomQuote();
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   _getRandomQuote();
-  // }
+  @override
+  void initState() {
+    super.initState();
+    _getRandomQuote();
+  }
 
   Widget _buildBodyContent() {
     return BlocBuilder<RandomQuoteCubit, RandomQuoteState>(
