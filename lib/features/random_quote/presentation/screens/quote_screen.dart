@@ -4,6 +4,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:quotes_app/core/utils/app_colors.dart';
 import 'package:quotes_app/features/random_quote/presentation/cubit/random_quote_cubit.dart';
 import 'package:quotes_app/features/random_quote/presentation/widgets/quote_content.dart';
+import 'package:quotes_app/core/widgets/error_widget.dart' as error_widget;
 
 import '../../../../core/utils/app_strings.dart';
 
@@ -18,11 +19,11 @@ class _QuoteScreenState extends State<QuoteScreen> {
   _getRandomQuote() =>
       BlocProvider.of<RandomQuoteCubit>(context).getRandomQuote();
 
-  @override
-  void initState() {
-    super.initState();
-    _getRandomQuote();
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   _getRandomQuote();
+  // }
 
   Widget _buildBodyContent() {
     return BlocBuilder<RandomQuoteCubit, RandomQuoteState>(
@@ -34,7 +35,7 @@ class _QuoteScreenState extends State<QuoteScreen> {
           ),
         );
       } else if (state is RandomQuoteError) {
-        return const Text('Error');
+        return const error_widget.ErrorWidget();
       } else if (state is RandomQuoteLoaded) {
         return Column(
           children: [
