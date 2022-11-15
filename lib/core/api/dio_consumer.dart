@@ -1,9 +1,9 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:http/http.dart';
 import 'package:quotes_app/core/api/api_consumer.dart';
 import 'package:quotes_app/core/api/app_interceptors.dart';
 import 'package:quotes_app/core/api/end_points.dart';
@@ -34,22 +34,31 @@ class DioConsumer implements ApiConsumer {
   }
 
   @override
-  Future get(String path, {Map<String, dynamic>? queryParameters}) {
-    // TODO: implement get
-    throw UnimplementedError();
+  Future get(String path, {Map<String, dynamic>? queryParameters}) async {
+    final response = await client.get(path, queryParameters: queryParameters);
+    return _handleResponseAsJson(response);
   }
 
   @override
   Future post(String path,
-      {Map<String, dynamic>? body, Map<String, dynamic>? queryParameters}) {
-    // TODO: implement post
-    throw UnimplementedError();
+      {Map<String, dynamic>? body,
+      Map<String, dynamic>? queryParameters}) async {
+    final response =
+        await client.post(path, queryParameters: queryParameters, data: body);
+    return _handleResponseAsJson(response);
   }
 
   @override
   Future put(String path,
-      {Map<String, dynamic>? body, Map<String, dynamic>? queryParameters}) {
-    // TODO: implement put
-    throw UnimplementedError();
+      {Map<String, dynamic>? body,
+      Map<String, dynamic>? queryParameters}) async {
+    final response =
+        await client.put(path, queryParameters: queryParameters, data: body);
+    return _handleResponseAsJson(response);
+  }
+
+  dynamic _handleResponseAsJson(Response<dynamic> response) {
+    final responseJson = jsonDecode(response.data.toString());
+    return responseJson;
   }
 }
