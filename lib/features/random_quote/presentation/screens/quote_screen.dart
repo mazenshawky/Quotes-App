@@ -5,7 +5,9 @@ import 'package:quotes_app/core/utils/app_colors.dart';
 import 'package:quotes_app/features/random_quote/presentation/cubit/random_quote_cubit.dart';
 import 'package:quotes_app/features/random_quote/presentation/widgets/quote_content.dart';
 import 'package:quotes_app/core/widgets/error_widget.dart' as error_widget;
+import 'package:quotes_app/features/splash/presentation/cubit/locale_cubit.dart';
 
+import '../../../../config/locale/app_localizations.dart';
 import '../../../../core/utils/app_strings.dart';
 
 class QuoteScreen extends StatefulWidget {
@@ -77,7 +79,19 @@ class _QuoteScreenState extends State<QuoteScreen> {
   @override
   Widget build(BuildContext context) {
     final appBar = AppBar(
-      title: const Text(AppStrings.appName),
+      leading: IconButton(
+          onPressed: () {
+            if (AppLocalizations.of(context)!.isEnLocale) {
+              BlocProvider.of<LocaleCubit>(context).toArabic();
+            } else {
+              BlocProvider.of<LocaleCubit>(context).toEnglish();
+            }
+          },
+          icon: Icon(
+            Icons.translate_outlined,
+            color: AppColors.primary,
+          )),
+      title: Text(AppLocalizations.of(context)!.translate('app_name')!),
     );
     return RefreshIndicator(
         child: Scaffold(
