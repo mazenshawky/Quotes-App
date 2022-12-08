@@ -8,7 +8,6 @@ import 'package:quotes_app/core/widgets/error_widget.dart' as error_widget;
 import 'package:quotes_app/features/splash/presentation/cubit/locale_cubit.dart';
 
 import '../../../../config/locale/app_localizations.dart';
-import '../../../../core/utils/app_strings.dart';
 
 class QuoteScreen extends StatefulWidget {
   const QuoteScreen({super.key});
